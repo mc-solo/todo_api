@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5000;
 const mongo_uri = process.env.MONGO_URI;
 
 app.use(bodyParser.json());
+app.use(express.json());
 
 // connect to database
 const connectDB = async () => {
@@ -20,5 +21,7 @@ const connectDB = async () => {
 };
 
 connectDB();
-
+app.get("/", (req, res) => {
+  res.send("welcome");
+});
 app.listen(PORT, () => console.log("app is running on port:", PORT));
